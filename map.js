@@ -1,5 +1,5 @@
 // Map (made with https://xem.github.io/3Dmapeditor/)
-map = {
+const map = {
   w: 10,
   h: 10,
   layers: [

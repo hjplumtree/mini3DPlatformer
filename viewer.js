@@ -1,14 +1,13 @@
 // Globals
-let token = " ",
-  rotation = 0,
-  texture = 0,
-  w = map.w,
-  h = map.h,
-  x = 0,
-  y = 0,
-  z = 0,
-  rx = 45,
-  rz = 45;
+// let rotation = 0;
+// let texture = 0;
+let w = map.w;
+let h = map.h;
+// let x = 0;
+// let y = 0;
+let z = 0;
+let rx = 45;
+let rz = 45;
 
 // Move the scene
 const moveScene = (rx, rz) => {
@@ -35,6 +34,8 @@ const drawCube = (x, y, z, id = "") => {
 
 // Draw scene
 const drawScene = () => {
+  let token = " ";
+
   for (Z in map.layers) {
     for (Y in map.layers[Z]) {
       for (X in map.layers[Z][Y]) {
@@ -48,16 +49,39 @@ const drawScene = () => {
   }
 };
 
-drawScene();
-scene.style.width = floor.style.width = w * 200 + "px";
-scene.style.height = floor.style.height = h * 200 + "px";
-if (top.RX)
-  RX.onchange =
-    RX.onupdate =
-    RX.oninput =
-    RZ.onchange =
-    RZ.onupdate =
-    RZ.oninput =
-      () => {
-        moveScene((rx = +RX.value), (rz = +RZ.value));
-      };
+init();
+
+function init() {
+  drawScene();
+  const $scene = document.querySelector("#scene");
+  $scene.style.width = floor.style.width = w * 200 + "px";
+  $scene.style.height = floor.style.height = h * 200 + "px";
+
+  const $RX = document.querySelector("#RX");
+  const $RZ = document.querySelector("#RZ");
+  if ($RX) {
+    console.log($RX);
+    $RX.onchange =
+      $RX.onupdate =
+      $RX.oninput =
+      $RZ.onchange =
+      $RZ.onupdate =
+      $RZ.oninput =
+        () => {
+          moveScene((rx = +$RX.value), (rz = +$RZ.value));
+        };
+
+    // WILL I?
+    // addEventListener로 바꿀수 있나?
+    // addMoveSceneEvent(RX, change);
+    // addMoveSceneEvent(RX, update);
+    // addMoveSceneEvent(RX, input);
+    // addMoveSceneEvent(RZ, change);
+    // addMoveSceneEvent(RZ, update);
+    // addMoveSceneEvent(RZ, input);
+  }
+}
+
+// function addMoveSceneEvent(target, evt) {
+//   target.addEventListener(evt, moveScene((rx = +RX.value), (rz = +RZ.value)));
+// }
