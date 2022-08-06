@@ -20,7 +20,7 @@
 }
 #scene {
   position: fixed;
-  transform: translate3D(-50%, -50%, -2000px) rotateX(65deg) rotateZ(-35deg);
+  transform: translate3D(-50%, -50%, -3000px) rotateX(60deg) rotateZ(-10deg);
 }
 #floor {
   position: fixed;
