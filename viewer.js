@@ -22,13 +22,26 @@ const moveScene = (rx, rz) => {
 const drawCube = (x, y, z, id = "") => {
   let cube = `<div id='${id}' class='cube' style='transform:${
     id == "hero" ? "scaleX(" + hero_w + ")scaleY(" + hero_h + ")" : ""
-  }translate3d(${x * 200}px,${y * 200}px,${z * 200}px)'>`;
+  } translate3d(${x * 200}px,${y * 200}px,${z * 200}px)'>`;
 
   cube += `<div class="face up"></div>`;
   cube += `<div class="face left"></div>`;
   cube += `<div class="face back"></div>`;
   cube += `<div class="face right"></div>`;
-  cube += `<div class="face front"></div>`;
+  cube += `<div class="face front">${z}</div></div>`;
+  return cube;
+};
+
+const drawCoin = (x, y, z, id = "") => {
+  let cube = `<div id='${id}' class='cube' style='transform:${
+    id == "hero" ? "scaleX(" + hero_w + ")scaleY(" + hero_h + ")" : ""
+  } translate3d(${x * 200}px,${y * 200}px,${z * 200}px)'>`;
+
+  cube += `<div class="face up"></div>`;
+  cube += `<div class="face left"></div>`;
+  cube += `<div class="face back"></div>`;
+  cube += `<div class="face right"></div>`;
+  cube += `<div class="face front">${z}</div></div>`;
   return cube;
 };
 
@@ -43,6 +56,9 @@ const drawScene = () => {
         if (token == "1") {
           // 1 = cube
           scene.insertAdjacentHTML("beforeEnd", drawCube(X, Y, Z));
+        }
+        if (token === "2") {
+          scene.insertAdjacentHTML("beforeEnd", drawCoin(X, Y, Z));
         }
       }
     }
@@ -60,7 +76,13 @@ function init() {
   const $RX = document.querySelector("#RX");
   const $RZ = document.querySelector("#RZ");
   if ($RX) {
-    console.log($RX);
+    // $RX.onchange = () => {
+    //   console.log($RX);
+    // };
+    $RX.onupdate = () => {
+      console.log($RX);
+    };
+
     $RX.onchange =
       $RX.onupdate =
       $RX.oninput =
