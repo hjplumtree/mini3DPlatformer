@@ -9,7 +9,7 @@ hero_h = 0.9; // hero height
 hero_d = 0.9; // hero depth
 hero_x = 2; // X position
 hero_y = 2; // Y position
-hero_z = 5; // Z position
+hero_z = 7; // Z position
 hero_vz = 0; // Z speed
 hero_az = 0; // Z acceleration
 hero_grounded = 0; // hero is grounded
@@ -26,10 +26,26 @@ scroll_x = 0; // X scroll in tiles
 // (I added "s" for space)
 u = r = d = l = s = 0;
 onkeydown = onkeyup = (e) => {
+  // 58 words 스페이스, 대소문자 대응을 위하여
   this[
     "s****lurd************************l**r************l*d***u**u"[e.which - 32]
   ] = e.type[5];
+  console.log(this);
+
+  // Surprising test
+  // const obj = {};
+  // obj["dd"] = "dd";
+  // obj["asdf"[32]] = "yo";
+  // console.log(obj);
+  // console.log(obj["asdf"[32]]);
 };
+
+// onkeydown = (e) => {
+//   this[
+//     "s****lurd************************l**r************l*d***u**u"[e.which - 32]
+//   ] = e.type[5];
+//   console.log(e.which);
+// };
 
 // Draw hero
 scene.insertAdjacentHTML("beforeEnd", drawCube(hero_x, hero_y, hero_z, "hero"));
